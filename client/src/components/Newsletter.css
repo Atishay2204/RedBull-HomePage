@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   NEWSLETTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.newsletter {
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-container {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.newsletter-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+/* ─── Form ────────────────────────────────────────────────────────────────── */
+.newsletter-form {
+  margin-bottom: 1.5rem;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 0;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  padding: 6px;
+  transition: all 0.3s;
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(230, 0, 50, 0.15);
+  background: var(--bg-card-hover);
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 1.1rem 1.5rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-family: 'Inter', sans-serif;
+  min-width: 0;
+}
+
+.newsletter-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.newsletter-btn {
+  padding: 1.1rem 2.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 5px 25px var(--accent-glow);
+}
+
+.newsletter-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── Status Messages ─────────────────────────────────────────────────────── */
+.newsletter-message {
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  animation: msgSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.newsletter-message.success {
+  background: rgba(0, 200, 80, 0.1);
+  color: #00e65b;
+  border: 1px solid rgba(0, 200, 80, 0.25);
+}
+
+.newsletter-message.error {
+  background: rgba(220, 40, 40, 0.1);
+  color: #ff3333;
+  border: 1px solid rgba(220, 40, 40, 0.25);
+}
+
+@keyframes msgSlideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.newsletter-disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+}
+
+/* ─── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 550px) {
+  .input-wrapper { flex-direction: column; }
+  .newsletter-btn { margin: 0 6px 6px; }
+}

@@ -1,0 +1,81 @@
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.toggle-track {
+  width: 56px;
+  height: 28px;
+  border-radius: 14px;
+  position: relative;
+  transition: background 0.4s;
+  overflow: hidden;
+}
+
+.toggle-track.dark {
+  background: linear-gradient(135deg, #1a1a3e, #0a0a2e);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.toggle-track.light {
+  background: linear-gradient(135deg, #87ceeb, #4ab3f4);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.toggle-track.dark .toggle-thumb {
+  transform: translateX(3px);
+}
+
+.toggle-track.light .toggle-thumb {
+  transform: translateX(31px);
+}
+
+/* Stars visible only in dark mode */
+.toggle-stars {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.4s;
+}
+
+.toggle-track.dark .toggle-stars {
+  opacity: 1;
+}
+
+.toggle-track.light .toggle-stars {
+  opacity: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite alternate;
+}
+
+.star:nth-child(1) { top: 6px;  left: 35px; animation-delay: 0s; }
+.star:nth-child(2) { top: 14px; left: 42px; animation-delay: 0.5s; }
+.star:nth-child(3) { top: 8px;  left: 48px; animation-delay: 1s; }
+
+@keyframes twinkle {
+  0%   { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1;   transform: scale(1.2); }
+}

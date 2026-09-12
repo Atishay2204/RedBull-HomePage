@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRODUCTS — 3D Tilt Hover Cards
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.products {
+  background: var(--bg-primary);
+}
+
+.products-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+/* ─── Card ────────────────────────────────────────────────────────────────── */
+.product-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 8px; /* More edgy, less bubbly */
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.15s ease-out, box-shadow 0.3s;
+  cursor: pointer;
+  position: relative;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  will-change: transform;
+}
+
+.product-card:hover {
+  box-shadow: var(--card-shadow);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Radial glow that follows cursor on card */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--glow-x) var(--glow-y),
+    rgba(255, 255, 255, 0.08),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.product-card:hover .card-glow {
+  opacity: 1;
+}
+
+.card-visual {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4));
+  z-index: 1;
+}
+
+.card-icon {
+  font-size: 5rem;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .card-icon {
+  transform: scale(1.2) rotate(-8deg);
+}
+
+.card-info {
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(to bottom, transparent, var(--bg-card) 20%);
+}
+
+.card-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.card-tagline {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.card-btn {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+}
+
+.card-btn:hover {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* ─── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}

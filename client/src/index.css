@@ -1,0 +1,212 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   RED BULL — Global Styles & Theme System (CSS Custom Properties)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Dark Theme (default) ────────────────────────────────────────────────── */
+:root,
+[data-theme='dark'] {
+  --bg-primary: #04040a;
+  --bg-secondary: #0a0a14;
+  --bg-card: rgba(20, 20, 30, 0.6);
+  --bg-card-hover: rgba(30, 30, 45, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: #9494a8;
+  --accent: #e60032; /* Brighter Red Bull Red */
+  --accent-hover: #ff1a4a;
+  --accent-glow: rgba(230, 0, 50, 0.4);
+  --accent-gold: #ffc800;
+  --accent-gold-glow: rgba(255, 200, 0, 0.3);
+  --border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(10, 10, 20, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(4, 4, 10, 0.85);
+  --spotlight-color: rgba(230, 0, 50, 0.15);
+  --section-divider: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --transition-speed: 0.4s;
+  color-scheme: dark;
+}
+
+/* ─── Light Theme ─────────────────────────────────────────────────────────── */
+[data-theme='light'] {
+  --bg-primary: #f4f4f8;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #ffffff;
+  --text-primary: #0a0a14;
+  --text-secondary: #5a5a6e;
+  --accent: #cc002c; /* Deep Red */
+  --accent-hover: #e60032;
+  --accent-glow: rgba(204, 0, 44, 0.2);
+  --accent-gold: #d4a000;
+  --accent-gold-glow: rgba(212, 160, 0, 0.15);
+  --border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --nav-bg: rgba(244, 244, 248, 0.9);
+  --spotlight-color: rgba(204, 0, 44, 0.08);
+  --section-divider: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+  --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.4s;
+  color-scheme: light;
+}
+
+/* ─── Reset & Base ────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ─── Scroll Reveal Animation Classes ─────────────────────────────────────── */
+.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal { transform: translateY(40px); }
+.scroll-reveal-left { transform: translateX(-60px); }
+.scroll-reveal-right { transform: translateX(60px); }
+
+.scroll-reveal.revealed,
+.scroll-reveal-left.revealed,
+.scroll-reveal-right.revealed {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ─── Section Utilities ───────────────────────────────────────────────────── */
+section {
+  padding: 120px 5%;
+  position: relative;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--section-divider);
+}
+
+/* ─── Heading Utilities ───────────────────────────────────────────────────── */
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.2rem;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 3.5rem;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* ─── Button Utilities ────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 2.5rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px; /* More athletic, edgy look instead of pill */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--accent-hover);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.btn-arrow {
+  transition: transform 0.3s;
+}
+.btn-primary:hover .btn-arrow {
+  transform: translateX(6px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.1rem 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-primary);
+  transform: translateY(-3px);
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.3); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+* { scrollbar-width: thin; scrollbar-color: rgba(128,128,128,0.3) var(--bg-primary); }
