@@ -31,7 +31,7 @@ const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 // ─── API Routes ──────────────────────────────────────────────────────────────
 
 // POST /api/newsletter — subscribe an email
-app.post('/api/newsletter', async (req, res) => {
+app.post('https://redbull-homepage-backend.onrender.com/api/newsletter', async (req, res) => {
   try {
     const { email } = req.body;
     if (!email) {
