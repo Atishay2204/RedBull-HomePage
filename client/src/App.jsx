@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+clearimport { useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
