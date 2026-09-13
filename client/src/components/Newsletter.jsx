@@ -12,7 +12,8 @@ export default function Newsletter() {
 
     setStatus('loading');
     try {
-      const res = await fetch('/api/newsletter', {
+      const API_URL = import.meta.env.DEV ? '' : 'https://redbull-homepage-backend.onrender.com';
+      const res = await fetch(`${API_URL}/api/newsletter`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
