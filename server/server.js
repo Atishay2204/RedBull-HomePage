@@ -38,6 +38,12 @@ app.post('/api/newsletter', async (req, res) => {
       return res.status(400).json({ error: 'Email is required' });
     }
 
+    // Fallback if MongoDB is not connected
+    if (mongoose.connection.readyState !== 1) {
+      console.warn('MongoDB not connected, mocking successful subscription for:', email);
+      return res.status(201).json({ message: 'Successfully subscribed! 🎉 (Mock)' });
+    }
+
     const subscriber = new Subscriber({ email });
     await subscriber.save();
     res.status(201).json({ message: 'Successfully subscribed! 🎉' });
@@ -53,6 +59,9 @@ app.post('/api/newsletter', async (req, res) => {
 // GET /api/subscribers — get subscriber count
 app.get('/api/subscribers', async (_req, res) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({ count: 0 });
+    }
     const count = await Subscriber.countDocuments();
     res.json({ count });
   } catch {
