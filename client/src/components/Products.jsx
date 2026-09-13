@@ -1,14 +1,7 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { productsData } from '../data/products';
 import './Products.css';
-
-const products = [
-  { name: 'Original',    tagline: 'The Classic Energy',       gradient: 'linear-gradient(135deg, #1a3a6c, #2a5298)', icon: '⚡' },
-  { name: 'Sugarfree',   tagline: 'Zero Sugar, Full Energy',  gradient: 'linear-gradient(135deg, #2a4a7c, #4a8bc2)', icon: '💎' },
-  { name: 'Tropical',    tagline: 'Tropical Burst',           gradient: 'linear-gradient(135deg, #c8a800, #f0d000)', icon: '🌴' },
-  { name: 'Watermelon',  tagline: 'Summer Edition',           gradient: 'linear-gradient(135deg, #c23060, #e05080)', icon: '🍉' },
-  { name: 'Peach',       tagline: 'Peach Nectarine Bliss',    gradient: 'linear-gradient(135deg, #d08030, #f0a050)', icon: '🍑' },
-  { name: 'Blueberry',   tagline: 'Blue Edition',             gradient: 'linear-gradient(135deg, #4030a0, #6050d0)', icon: '🫐' },
-];
 
 /* ── Feature #5: 3D Tilt Hover Card ────────────────────────────────────────── */
 function ProductCard({ product, index }) {
@@ -51,7 +44,9 @@ function ProductCard({ product, index }) {
       <div className="card-info">
         <h3 className="card-name">Red Bull {product.name}</h3>
         <p className="card-tagline">{product.tagline}</p>
-        <button className="card-btn">Learn More</button>
+        <Link to={`/product/${product.id}`} className="card-btn" style={{ display: 'block', textAlign: 'center' }}>
+          Learn More
+        </Link>
       </div>
     </div>
   );
@@ -69,8 +64,8 @@ export default function Products() {
           </p>
         </div>
         <div className="products-grid">
-          {products.map((product, i) => (
-            <ProductCard key={product.name} product={product} index={i} />
+          {productsData.map((product, i) => (
+            <ProductCard key={product.id} product={product} index={i} />
           ))}
         </div>
       </div>
